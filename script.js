@@ -57,13 +57,41 @@ var todoList = {
   }
 };
 
-var displayTodosButton = document.getElementById('display-todos');
-var toggleAllButton = document.getElementById('toggle-all');
-
-displayTodosButton.addEventListener('click', function() {
-  todoList.displayTodos();
-});
-toggleAllButton.addEventListener('click', function() {
-  todoList.toggleAll();
-})
+var handlers = {
+  displayTodos: function() {
+    todoList.displayTodos()
+  },
+  toggleAll: function() {
+    todoList.toggleAll()
+  },
+  addTodo: function() {
+    var input = document.getElementById('add-todo-input');
+    if (input.value) {
+      todoList.addTodo(input.value);
+      input.value = '';
+    }
+  },
+  changeTodo: function() {
+    var position = document.getElementById('change-todo-position');
+    var input = document.getElementById('change-todo-text');
+    if (input.value) {
+      todoList.changeTodo(position.valueAsNumber, input.value);
+      input.value = '';
+      position.value = '';
+    }
+  },
+  deleteTodo: function() {
+    var position =  document.getElementById('delete-todo-position');
+    todoList.deleteTodo(position.valueAsNumber);
+    position.value = '';
+  },
+  toggleCompleted: function() {
+    var position =  document.getElementById('toggle-todo-position');
+    todoList.toggleCompleted(position.valueAsNumber);
+    position.value = '';
+  },
+  toggleAll: function() {
+    todoList.toggleAll();
+  }
+}
 
