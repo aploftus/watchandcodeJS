@@ -8,11 +8,11 @@ var todoList = {
       console.log('My Todos:');
       for (var i = 0; i < this.todos.length; i++) {
         if (this.todos[i].completed) {
-          console.log('(x)' + this.todos[i].todoText);
+          console.log('(x) ' + this.todos[i].todoText);
         } else {
-          console.log('( )' + this.todos[i].todoText);
+          console.log('( ) ' + this.todos[i].todoText);
         }
-      };
+      }
     }
   },
   addTodo: function(todoText) {
@@ -33,6 +33,26 @@ var todoList = {
   toggleCompleted: function(position) {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
+    this.displayTodos();
+  },
+  toggleAll: function() {
+    var completedTodos = 0;
+    var totalTodos = this.todos.length;
+    for (var i = 0; i < this.todos.length; i++) {
+      if (this.todos[i].completed) {
+        completedTodos ++;
+      }
+    }
+    // if everything is true, make everything false
+    if (completedTodos === totalTodos) {
+      for (var k = 0; k < this.todos.length; k++) {
+        this.todos[k].completed = false;
+      }
+    } else {
+      for (var m = 0; m < this.todos.length; m++) {
+        this.todos[m].completed = true;
+      }
+    }
     this.displayTodos();
   }
 };
